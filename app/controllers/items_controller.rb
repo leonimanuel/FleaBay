@@ -1,4 +1,7 @@
 class ItemsController < ApplicationController
+	helper UsersHelper
+	before_action :current_user
+
 	def new
 		@item = Item.new(user: User.find(params[:user_id]))
 	end
@@ -24,6 +27,10 @@ class ItemsController < ApplicationController
 
 
 	private
+
+	def current_user
+		@user = User.find(session[:user_id])
+	end
 
 	def item_params
 		params.require(:item).permit(:name, :condition, :start_price, :user_id)
