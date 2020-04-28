@@ -1,0 +1,7 @@
+<h1><%= @item.name %></h1>
+
+<% if @item.bids.empty?%>
+	<p>Starting bid price: lkajhflhasdljf</p>
+<% else %>
+	<h3>Top bid: <%= "$#{number_with_precision(@item.bids.highest[0].amount, :precision => 2)}" %></h3>
+<% end %>

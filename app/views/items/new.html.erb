@@ -1,0 +1,27 @@
+<h1>New Item</h1>
+
+<%= form_with model: @item do |f| %>
+	<%= f.hidden_field :user_id %>
+
+	<%= f.label :name %>
+	<%= f.text_field :name %> <br>
+
+	<%= f.label "Condition:" %> <br>
+
+	<%= f.radio_button :condition, "excellent" %> 
+	<%= f.label :condition_excellent, "excellent" %> <br>
+
+	<%= f.radio_button :condition, "good" %> 
+	<%= f.label :condition_excellent, "good" %> <br>
+
+	<%= f.radio_button :condition, "fair" %> 
+	<%= f.label :condition_excellent, "fair" %> <br>
+
+	<%= f.radio_button :condition, "poor" %> 
+	<%= f.label :condition_excellent, "poor" %> <br>
+
+	<%= f.label :start_price, "Start price $" %>
+	<%= f.text_field :start_price %> <br>
+
+	<%= f.submit %>
+<% end %>
