@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-	helper UsersHelper
+	include UsersHelper
 	before_action :current_user
 
 	def new

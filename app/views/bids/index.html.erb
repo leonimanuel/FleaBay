@@ -1,0 +1,7 @@
+<h1>Your bids</h1>
+
+<ol>
+	<% @bids.each do |bid| %>
+		<li><%= bid.item.name %></li>
+	<% end %>
+</ol>

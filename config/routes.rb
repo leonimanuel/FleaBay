@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   resources :items
   
   resources :users do
-  	resources :items	
+  	resources :bids, only: [:index]
+    resources :items	
   end
 
   get "/login" => "sessions#new"

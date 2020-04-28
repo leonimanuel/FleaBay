@@ -1,4 +1,11 @@
 class BidsController < ApplicationController
+	include UsersHelper
+	before_action :current_user
+
+	def index
+		@bids = @user.bids
+	end
+
 	def new
 		@bid = Bid.new
 	end

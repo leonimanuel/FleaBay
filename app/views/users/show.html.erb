@@ -1,7 +1,8 @@
 <h1>My account</h1>
 
 <%= link_to "Go Shopping", items_path %> <br>
-<%= link_to "My items", user_items_path(@user) %>
+<%= link_to "My items", user_items_path(@user) %> <br>
+<%= link_to "My Bids", user_bids_path(@user) %>
 
 <%= form_with url: "/logout", method: :delete do %>
 	<%= submit_tag "Log Out" %>
