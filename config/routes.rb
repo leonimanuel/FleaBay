@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # resources :item_categories
   # resources :categories
-  resources :bids
+  resources :bids, only: [:new, :create, :edit, :update]
   resources :items
   
   resources :users do

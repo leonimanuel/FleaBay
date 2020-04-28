@@ -21,7 +21,13 @@ class ItemsController < ApplicationController
 	end
 
 	def show
+		@bid = Bid.new
 		@item = Item.find(params[:id])
+		if @item.bids.any? { |bid| bid.user == @user }
+			@bid = Bid.find_by(user: @user)
+		else
+			@bid = Bid.new
+		end
 	end
 
 

@@ -6,4 +6,8 @@
 	<h3>Top bid: <%= "$#{number_with_precision(@item.bids.highest[0].amount, :precision => 2)}" %></h3>
 <% end %>
 
-<h3><%= @item.seller %></h3>
+<h3>Seller: <%= @item.seller.name %></h3>
+
+<% if @user == @item.seller %>
+	<%= render "bids/form" %>
+<% end %>

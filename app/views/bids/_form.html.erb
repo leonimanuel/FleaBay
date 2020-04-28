@@ -1,0 +1,8 @@
+<%= form_with model: @bid do |f| %>
+	<%= f.hidden_field :user_id %>		
+
+	<%= f.label :amount, "Place Bid: " %>
+	<%= f.text_field :amount %>
+
+	<%= f.submit "Place Bid" %>		
+<% end %>
