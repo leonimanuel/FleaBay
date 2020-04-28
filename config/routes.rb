@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   get "/login" => "sessions#new"
   resources :sessions, only: [:create]
+  delete "/logout" => "sessions#delete"
+  # delete "/logout" => "sessions"
 
 
    # get "/users/:id/items" => "users#items"

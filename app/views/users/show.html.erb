@@ -2,3 +2,8 @@
 
 <%= link_to "Go Shopping", items_path %> <br>
 <%= link_to "My items", user_items_path(@user) %>
+
+<%= form_with url: "/logout", method: :delete do %>
+	<%= submit_tag "Log Out" %>
+<% end %>
+

@@ -8,6 +8,6 @@
 
 <h3>Seller: <%= @item.seller.name %></h3>
 
-<% if @user == @item.seller %>
+<% if @user != @item.seller %>
 	<%= render "bids/form" %>
 <% end %>

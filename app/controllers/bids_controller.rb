@@ -4,8 +4,10 @@ class BidsController < ApplicationController
 	end
 
 	def create
-		binding.pry
 		bid = Bid.create(bid_params)
+		binding.pry
+
+		redirect_to items_path
 	end
 
 	def edit
@@ -20,6 +22,6 @@ class BidsController < ApplicationController
 	private
 
 	def bid_params
-		params.require(:bid).permit(:amount, :user_id)
+		params.require(:bid).permit(:amount, :item_id, :user_id)
 	end
 end
