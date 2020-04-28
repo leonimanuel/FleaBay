@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_28_031021) do
+ActiveRecord::Schema.define(version: 2020_04_28_171420) do
 
   create_table "bids", force: :cascade do |t|
     t.float "amount"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2020_04_28_031021) do
     t.integer "item_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "active", default: true
     t.index ["item_id"], name: "index_bids_on_item_id"
     t.index ["user_id"], name: "index_bids_on_user_id"
   end
@@ -41,13 +42,13 @@ ActiveRecord::Schema.define(version: 2020_04_28_031021) do
     t.string "name"
     t.string "price"
     t.string "condition"
-    t.integer "user_id", null: false
+    t.integer "seller_id", null: false
     t.datetime "time_remaining"
     t.boolean "sold"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.float "start_price"
-    t.index ["user_id"], name: "index_items_on_user_id"
+    t.index ["seller_id"], name: "index_items_on_seller_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -62,5 +63,5 @@ ActiveRecord::Schema.define(version: 2020_04_28_031021) do
   add_foreign_key "bids", "users"
   add_foreign_key "item_categories", "categories"
   add_foreign_key "item_categories", "items"
-  add_foreign_key "items", "users"
+  add_foreign_key "items", "users", column: "seller_id"
 end
