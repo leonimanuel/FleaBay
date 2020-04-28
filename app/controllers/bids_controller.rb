@@ -5,7 +5,6 @@ class BidsController < ApplicationController
 
 	def create
 		bid = Bid.create(bid_params)
-		binding.pry
 
 		redirect_to items_path
 	end

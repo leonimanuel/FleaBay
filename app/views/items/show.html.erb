@@ -11,3 +11,5 @@
 <% if @user != @item.seller %>
 	<%= render "bids/form" %>
 <% end %>
+
+<h3><%= "You are the top bidder!" if @user == @item.bids.highest[0].user %></h3>	
