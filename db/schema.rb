@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_29_030023) do
+ActiveRecord::Schema.define(version: 2020_04_29_030320) do
 
   create_table "auctions", force: :cascade do |t|
     t.datetime "close_time"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2020_04_29_030023) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.float "starting_price"
+    t.boolean "open", default: true
   end
 
   create_table "bids", force: :cascade do |t|
