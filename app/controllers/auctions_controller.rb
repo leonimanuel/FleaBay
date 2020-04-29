@@ -4,9 +4,9 @@ class AuctionsController < ApplicationController
 
 	def index
 		if params[:user_id]
-			@auctions = @user.auctions
+			@auctions = @user.auctions.open
 		else
-			@auctions = Auction.all
+			@auctions = Auction.open
 		end
 	end
 

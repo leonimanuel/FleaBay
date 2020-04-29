@@ -3,7 +3,7 @@ class Auction < ApplicationRecord
 	has_one :item
 	has_many :bids
 
-	def close_boi(date, time)
-		"#{date}, #{time}"
+	def self.open
+		where("open = ?", true).all
 	end
 end
