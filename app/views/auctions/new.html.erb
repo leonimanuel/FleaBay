@@ -21,8 +21,8 @@
 	<%= f.label :starting_price, "Starting price $" %>
 	<%= f.text_field :starting_price %> <br>
 
-	<%= f.label :close_time, "Closing Date:" %>
-	<%= f.date_field :close_time %>
+	<%= f.label :close_time, "Closing Date/Time:" %>
+	<%= f.datetime_field :close_time %> <br>
 
 	<%= f.submit "Create Auction"%>
 <% end %>

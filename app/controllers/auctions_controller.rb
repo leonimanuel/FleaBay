@@ -27,7 +27,7 @@ class AuctionsController < ApplicationController
 		item = Item.new(item_params)
 		item.auction = auction
 		item.save
-		binding.pry
+		# binding.pry
 
 		redirect_to user_items_path(@user)
 	end
