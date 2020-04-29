@@ -8,7 +8,9 @@
 <% if @auctions %>
 	<ol>
 		<% @auctions.each do |auction| %>
-			<li><%= link_to auction.item.name, auction_path(auction) %></li>
+			<% unless auction.user == @user %>
+				<li><%= link_to auction.item.name, auction_path(auction) %></li>
+			<% end %>
 		<% end %>
 	</ol>
 <% end %>

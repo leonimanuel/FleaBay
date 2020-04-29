@@ -27,7 +27,6 @@ class AuctionsController < ApplicationController
 	end
 
 	def create
-		binding.pry
 		auction = Auction.create(auction_params)
 		item = Item.new(item_params)
 		item.auction = auction
