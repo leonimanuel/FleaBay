@@ -6,7 +6,7 @@
 	<h3>Top bid: <%= "$#{number_with_precision(@highest_bid, :precision => 2)}" %></h3>
 <% end %>
 
-<p>Time remaining: lkjashdf</p>
+<p>Expires on: <%= @auction.close_time.strftime("%B %d, %Y at %I:%M %p") %></p>
 
 <h3>Seller: <%= @auction.item.seller.name %></h3>
 
