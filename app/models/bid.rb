@@ -3,7 +3,7 @@ class Bid < ApplicationRecord
 	belongs_to :user
 
 	scope :highest_bid, -> {
-		where(amount: self.maximum(:amount)).all[0]
+		where(amount: self.maximum(:amount))
 	}
 
 	# def self.highest_bidder

@@ -13,8 +13,8 @@ class AuctionsController < ApplicationController
 	def show
 		@auction = Auction.find(params[:id])
 		@bid = Bid.new
-		@highest_bid = @auction.bids.maximum("amount")
-		@highest_bidder = @auction.bids.highest_bidder
+		@highest_bid = @auction.bids.highest_bid.first.amount
+		@highest_bidder = @auction.highest_bidder
 
 	end
 

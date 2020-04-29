@@ -10,8 +10,9 @@ class Item < ApplicationRecord
 
   belongs_to :auction
 
-  def self.bought(session)
-  	items = Auction.open.collect { |auction| auction.item }
-  	items.collect { |item| item.auction.bids.highest_bidder.id == session[:user_id]}
+  def self.bought(user)
+  	closed_auctions = Auction.closed
+    items = closed_auctions.collect { |auction| auction.item }
+  	items.collect { |item| item.auction.highest_bidder if item.auction.highest_bidder == user}
   end
 end

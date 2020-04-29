@@ -7,7 +7,11 @@ class Auction < ApplicationRecord
 		where(open: true).all
 	end
 
+	def self.closed
+		where(open: false).all
+	end
+
 	def highest_bidder
-		self.bids.highest_bid.user
+		self.bids.highest_bid.first.user
 	end
 end

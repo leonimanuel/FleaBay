@@ -15,7 +15,9 @@
 <% end %>
 
 <% if !@auction.bids.empty? %>
-	<h3><%= "You are the top bidder!" if @user == @auction.highest_bidder.user %></h3>
-<% else %>
-	<h3>You are the top bidder!</h3>	
+	<% if @user == @auction.highest_bidder %>
+		<h3>You are the top bidder!</h3>
+	<% else %>
+		<h3>You are not the top bidder!</h3>	
+	<% end %>
 <% end %>
