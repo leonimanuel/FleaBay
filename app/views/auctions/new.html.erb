@@ -1,5 +1,5 @@
 <%= form_with model: @auction, url: user_auctions_path(@user) do |f| %>
-	<%= f.hidden_field :user_id %>
+	<%= f.hidden_field :user_id, value: session[:user_id] %>
 
 	<%= f.label :name, "Item Name" %>
 	<%= f.text_field :name %> <br>

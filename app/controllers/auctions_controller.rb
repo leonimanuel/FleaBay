@@ -1,7 +1,7 @@
 class AuctionsController < ApplicationController
 	include UsersHelper
 	before_action :current_user
-	before_auction :close_expired
+	# before_auction :close_expired
 
 	def index
 		if params[:user_id]
@@ -14,8 +14,11 @@ class AuctionsController < ApplicationController
 	def show
 		@auction = Auction.find(params[:id])
 		@bid = Bid.new
-		@highest_bid = @auction.bids.highest_bid.first.amount
-		@highest_bidder = @auction.highest_bidder
+		
+		if !@auction.bids.empty?
+			@highest_bid = @auction.bids.highest_bid.first.amount 
+			@highest_bidder = @auction.highest_bidder
+		end
 
 	end
 
@@ -24,12 +27,13 @@ class AuctionsController < ApplicationController
 	end
 
 	def create
+		binding.pry
 		auction = Auction.create(auction_params)
 		item = Item.new(item_params)
 		item.auction = auction
 		item.save
 
-		redirect_to user_items_path(@user)
+		redirect_to user_auctions_path(@user)
 	end
 
 

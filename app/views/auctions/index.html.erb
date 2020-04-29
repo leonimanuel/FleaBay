@@ -5,12 +5,13 @@
 	<h1>All Auctions</h1>
 <% end %>
 
-<ol>
-	<% @auctions.each do |auction| %>
-		<li><%= link_to auction.item.name, auction_path(auction) %></li>
-	<% end %>
-</ol>
-
+<% if @auctions %>
+	<ol>
+		<% @auctions.each do |auction| %>
+			<li><%= link_to auction.item.name, auction_path(auction) %></li>
+		<% end %>
+	</ol>
+<% end %>
 
 
 
