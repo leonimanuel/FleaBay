@@ -3,7 +3,7 @@
 <%= link_to "Go Shopping", items_path %> <br>
 <%= link_to "Auctions", user_auctions_path(@user) %> <br>
 <%= link_to "Bids", user_bids_path(@user) %> <br>
-<%= link_to "Purchases", user_bids_path(@user) %>
+<%= link_to "Purchases", user_purchases_path(@user) %>
 
 <%= form_with url: "/logout", method: :delete do %>
 	<%= submit_tag "Log Out" %>

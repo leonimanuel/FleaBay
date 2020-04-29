@@ -9,4 +9,9 @@ class Item < ApplicationRecord
   has_many :bidders, class_name: "User"
 
   belongs_to :auction
+
+  def self.bought(session)
+  	items = Auction.open.collect { |auction| auction.item }
+  	items.collect { |item| item.auction.bids.highest_bidder.id == session[:user_id]}
+  end
 end

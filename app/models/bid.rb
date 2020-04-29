@@ -2,7 +2,7 @@ class Bid < ApplicationRecord
 	belongs_to :auction
 	belongs_to :user
 
-	scope :highest_bidder, -> {
+	scope :highest_bid, -> {
 		where(amount: self.maximum(:amount)).all[0]
 	}
 

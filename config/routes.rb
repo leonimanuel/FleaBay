@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   resources :users do
 	  resources :auctions
     resources :bids, only: [:index]
-    resources :items	
+    resources :items
+    get "/purchases" => "users#purchases"	
   end
 
   get "/login" => "sessions#new"
