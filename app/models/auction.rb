@@ -7,8 +7,16 @@ class Auction < ApplicationRecord
 		where(open: true).all
 	end
 
+	def self.expired
+		where("close_time < ?", Time.now)
+	end
+
 	def self.closed
 		where(open: false).all
+	end
+
+	def self.close_expired
+		where("close_time < ?", Time.now).update(open: false)
 	end
 
 	def highest_bidder

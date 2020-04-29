@@ -1,6 +1,7 @@
 class AuctionsController < ApplicationController
 	include UsersHelper
 	before_action :current_user
+	before_auction :close_expired
 
 	def index
 		if params[:user_id]
@@ -27,7 +28,6 @@ class AuctionsController < ApplicationController
 		item = Item.new(item_params)
 		item.auction = auction
 		item.save
-		# binding.pry
 
 		redirect_to user_items_path(@user)
 	end
