@@ -12,7 +12,6 @@ class BidsController < ApplicationController
 
 	def create
 		bid = Bid.create(bid_params)
-		binding.pry
 
 		redirect_to auctions_path
 	end

@@ -1,9 +1,10 @@
 <% if params[:user_id] %>
 	<h1>Your Auctions</h1>
 	<h3><%= link_to "Auction New Item", new_user_auction_path(@user) %></h3>
+<% else %>
+	<h1>All Auctions</h1>
 <% end %>
 
-<h1><%= "All " if !params[:user_id] %>Auctions</h1>
 <ol>
 	<% @auctions.each do |auction| %>
 		<li><%= link_to auction.item.name, auction_path(auction) %></li>

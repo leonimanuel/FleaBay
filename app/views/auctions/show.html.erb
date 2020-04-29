@@ -13,6 +13,7 @@
 <% end %>
 
 <% if !@auction.bids.empty? %>
-	<% binding.pry %>
-	<h3><%= "You are the top bidder!" if @user == @auction.bids.highest_bidder.user.name %></h3>	
+	<h3><%= "You are the top bidder!" if @user == @auction.bids.highest_bidder.user %></h3>
+<% else %>
+	<h3>You are the top bidder!</h3>	
 <% end %>
