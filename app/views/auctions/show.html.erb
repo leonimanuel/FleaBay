@@ -3,7 +3,7 @@
 <% if @auction.bids.empty?%>
 	<p>Starting bid price: $<%= number_with_precision(@auction.starting_price, :precision => 2) %></p>
 <% else %>
-	<h3>Top bid: <%= "$#{number_with_precision(@auction.bids.highest[0].amount, :precision => 2)}" %></h3>
+	<h3>Top bid: <%= "$#{number_with_precision(@highest_bid, :precision => 2)}" %></h3>
 <% end %>
 
 <h3>Seller: <%= @auction.item.seller.name %></h3>
@@ -13,5 +13,6 @@
 <% end %>
 
 <% if !@auction.bids.empty? %>
-	<h3><%= "You are the top bidder!" if @user == @auction.item.bids.highest[0].user %></h3>	
+	<% binding.pry %>
+	<h3><%= "You are the top bidder!" if @user == @auction.bids.highest_bidder.user.name %></h3>	
 <% end %>

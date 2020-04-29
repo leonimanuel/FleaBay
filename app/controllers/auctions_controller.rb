@@ -3,7 +3,6 @@ class AuctionsController < ApplicationController
 	before_action :current_user
 
 	def index
-		
 		if params[:user_id]
 			@auctions = @user.auctions
 		else
@@ -12,8 +11,11 @@ class AuctionsController < ApplicationController
 	end
 
 	def show
-		@bid = Bid.new
 		@auction = Auction.find(params[:id])
+		@bid = Bid.new
+		@highest_bid = @auction.bids.maximum("amount")
+		@highest_bidder = @auction.bids.highest_bidder
+
 	end
 
 	def new
