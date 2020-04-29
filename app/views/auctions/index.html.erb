@@ -1,0 +1,11 @@
+<h1>Your Auctions</h1>
+
+<h3><%= link_to "Auction New Item", new_user_auction_path(@user) %></h3>
+
+<h1>All Auctions</h1>
+
+<% @auctions.each.with_index(1) do |auction, index| %>
+	<h3><%= index %>. <%= link_to auction, user_auction_path(@user, auction) %></h3>
+<% end %>
+
+<%= render "form" %>

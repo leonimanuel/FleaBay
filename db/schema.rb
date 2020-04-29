@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_28_171420) do
+ActiveRecord::Schema.define(version: 2020_04_28_234341) do
+
+  create_table "auctions", force: :cascade do |t|
+    t.datetime "close_time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.float "starting_price"
+  end
 
   create_table "bids", force: :cascade do |t|
     t.float "amount"
@@ -19,6 +27,7 @@ ActiveRecord::Schema.define(version: 2020_04_28_171420) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "active", default: true
+    t.integer "auction_id"
     t.index ["item_id"], name: "index_bids_on_item_id"
     t.index ["user_id"], name: "index_bids_on_user_id"
   end
@@ -42,13 +51,12 @@ ActiveRecord::Schema.define(version: 2020_04_28_171420) do
     t.string "name"
     t.string "price"
     t.string "condition"
-    t.integer "seller_id", null: false
-    t.datetime "time_remaining"
+    t.integer "user_id", null: false
     t.boolean "sold"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.float "start_price"
-    t.index ["seller_id"], name: "index_items_on_seller_id"
+    t.integer "auction_id"
+    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -63,5 +71,5 @@ ActiveRecord::Schema.define(version: 2020_04_28_171420) do
   add_foreign_key "bids", "users"
   add_foreign_key "item_categories", "categories"
   add_foreign_key "item_categories", "items"
-  add_foreign_key "items", "users", column: "seller_id"
+  add_foreign_key "items", "users"
 end

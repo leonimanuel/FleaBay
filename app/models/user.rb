@@ -1,7 +1,8 @@
 class User < ApplicationRecord
 	has_secure_password
 
-	has_many :items, foreign_key: :seller_id
+	has_many :items #inverse_of: "seller"
 	has_many :bids
 	
+	has_many :auctions
 end

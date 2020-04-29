@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
+
   # resources :item_categories
   # resources :categories
   resources :bids, only: [:new, :create, :edit, :update]
   resources :items
+  # resources :auctions, only: [:new, :create, :edit, :update, :delete]
   
   resources :users do
-  	resources :bids, only: [:index]
+	  resources :auctions
+    resources :bids, only: [:index]
     resources :items	
   end
 

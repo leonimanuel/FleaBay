@@ -1,0 +1,28 @@
+<%= form_with model: @auction, url: user_auctions_path(@user) do |f| %>
+	<%= f.hidden_field :user_id %>
+
+	<%= f.label :name, "Item Name" %>
+	<%= f.text_field :name %> <br>
+
+	<%= f.label "Condition:" %> <br>
+
+	<%= f.radio_button :condition, "excellent" %> 
+	<%= f.label :condition_excellent, "excellent" %> <br>
+
+	<%= f.radio_button :condition, "good" %> 
+	<%= f.label :condition_excellent, "good" %> <br>
+
+	<%= f.radio_button :condition, "fair" %> 
+	<%= f.label :condition_excellent, "fair" %> <br>
+
+	<%= f.radio_button :condition, "poor" %> 
+	<%= f.label :condition_excellent, "poor" %> <br>
+
+	<%= f.label :starting_price, "Starting price $" %>
+	<%= f.text_field :starting_price %> <br>
+
+	<%= f.label :close_time, "Closing Date:" %>
+	<%= f.date_field :close_time %>
+
+	<%= f.submit "Create Auction"%>
+<% end %>
