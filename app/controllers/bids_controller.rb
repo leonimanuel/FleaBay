@@ -13,7 +13,7 @@ class BidsController < ApplicationController
 	def create
 		bid = Bid.create(bid_params)
 
-		redirect_to auctions_path
+		redirect_to auction_path(params[:bid][:auction_id])
 	end
 
 	def edit

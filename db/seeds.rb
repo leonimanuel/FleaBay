@@ -19,7 +19,7 @@ luke = User.create(name: "Luke", email: "luke@yahoo.com", password: "milkmaid")
 # toaster = Item.create(name: "Toaster", condition: "excellent", user: megan)
 # piano = Item.create(name: "Piano", condition: "excellent", user: billy)
 
-20.times do
+50.times do
 	auction = Auction.create(user: User.all.sample)
 	auction.update(starting_price: Faker::Commerce.price(range: 0..500.0))
 	auction.update(close_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now + 3))
