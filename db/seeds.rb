@@ -17,4 +17,3 @@ luke = User.create(name: "Luke", email: "luke@yahoo.com", password: "milkmaid")
 # toaster = Item.create(name: "Toaster", condition: "excellent", user: megan)
 # piano = Item.create(name: "Piano", condition: "excellent", user: billy)
 
-
