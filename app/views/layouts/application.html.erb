@@ -12,7 +12,7 @@
   <body>
     <p>User: <%= current_user.name if current_user %></p>
     <div id="nav-menu">
-      <div id="nav-home" class="nav-item"><%= link_to "Home", items_path %></div>
+      <div id="nav-home" class="nav-item"><%= link_to "Home", auctions_path %></div>
       <!-- <div class="nav-item">My account</div> -->
       <% if current_user %>
         <div id="nav-home" class="nav-item"><%= link_to "My account", user_path(User.find(session[:user_id])) %></div>     

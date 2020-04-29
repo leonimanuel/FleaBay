@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_28_234341) do
+ActiveRecord::Schema.define(version: 2020_04_29_015740) do
 
   create_table "auctions", force: :cascade do |t|
     t.datetime "close_time"
@@ -22,14 +22,11 @@ ActiveRecord::Schema.define(version: 2020_04_28_234341) do
 
   create_table "bids", force: :cascade do |t|
     t.float "amount"
-    t.integer "user_id", null: false
-    t.integer "item_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "active", default: true
     t.integer "auction_id"
-    t.index ["item_id"], name: "index_bids_on_item_id"
-    t.index ["user_id"], name: "index_bids_on_user_id"
+    t.integer "user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -67,8 +64,6 @@ ActiveRecord::Schema.define(version: 2020_04_28_234341) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "bids", "items"
-  add_foreign_key "bids", "users"
   add_foreign_key "item_categories", "categories"
   add_foreign_key "item_categories", "items"
   add_foreign_key "items", "users"

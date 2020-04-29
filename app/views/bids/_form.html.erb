@@ -1,9 +1,11 @@
 <%= form_with model: @bid do |f| %>
 	<%= f.hidden_field :user_id, value: @user.id %>	
-	<%= f.hidden_field :item_id, value: @item.id %>	
+	<%= f.hidden_field :auction_id, value: @auction.id %>	
 
 	<%= f.label :amount, "Place Bid: $" %>
 	<%= f.text_field :amount %>
 
 	<%= f.submit "Place Bid" %>		
 <% end %>
+
+<!-- url: bids_path, method: "create"  -->

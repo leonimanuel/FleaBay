@@ -1,0 +1,17 @@
+<h1><%= @auction.item.name %></h1>
+
+<% if @auction.bids.empty?%>
+	<p>Starting bid price: $<%= number_with_precision(@auction.starting_price, :precision => 2) %></p>
+<% else %>
+	<h3>Top bid: <%= "$#{number_with_precision(@auction.bids.highest[0].amount, :precision => 2)}" %></h3>
+<% end %>
+
+<h3>Seller: <%= @auction.item.seller.name %></h3>
+
+<% if @user != @auction.item.seller %>
+	<%= render "bids/form" %>
+<% end %>
+
+<% if !@auction.bids.empty? %>
+	<h3><%= "You are the top bidder!" if @user == @auction.item.bids.highest[0].user %></h3>	
+<% end %>

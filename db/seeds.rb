@@ -13,8 +13,8 @@ megan = User.create(name: "Megan", email: "megan@aol.com", password: "greenbeans
 ben = User.create(name: "Ben", email: "ben@gmail.com", password: "fishsticks")
 luke = User.create(name: "Luke", email: "luke@yahoo.com", password: "milkmaid")
 
-bike = Item.create(name: "Bike", condition: "good", user: billy)
-toaster = Item.create(name: "Toaster", condition: "excellent", user: megan)
-piano = Item.create(name: "Piano", condition: "excellent", user: billy)
+# bike = Item.create(name: "Bike", condition: "good", user: billy)
+# toaster = Item.create(name: "Toaster", condition: "excellent", user: megan)
+# piano = Item.create(name: "Piano", condition: "excellent", user: billy)
 
 

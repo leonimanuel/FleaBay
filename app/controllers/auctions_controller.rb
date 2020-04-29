@@ -3,7 +3,17 @@ class AuctionsController < ApplicationController
 	before_action :current_user
 
 	def index
-		@auctions = @user.auctions
+		
+		if params[:user_id]
+			@auctions = @user.auctions
+		else
+			@auctions = Auction.all
+		end
+	end
+
+	def show
+		@bid = Bid.new
+		@auction = Auction.find(params[:id])
 	end
 
 	def new
@@ -24,10 +34,10 @@ class AuctionsController < ApplicationController
 	private
 
 	def auction_params
-		params.permit(:starting_price, :close_time, :user_id)
+		params.require(:auction).permit(:starting_price, :close_time, :user_id)
 	end
 
 	def item_params
-		params.permit(:name, :condition, :user_id)
+		params.require(:auction).permit(:name, :condition, :user_id)
 	end
 end

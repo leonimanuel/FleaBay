@@ -7,13 +7,14 @@ class BidsController < ApplicationController
 	end
 
 	def new
-		@bid = Bid.new
+		@bid = Bid.new(user: User.find(session[:user_id]))
 	end
 
 	def create
 		bid = Bid.create(bid_params)
+		binding.pry
 
-		redirect_to items_path
+		redirect_to auctions_path
 	end
 
 	def edit
@@ -28,6 +29,6 @@ class BidsController < ApplicationController
 	private
 
 	def bid_params
-		params.require(:bid).permit(:amount, :item_id, :user_id)
+		params.require(:bid).permit(:amount, :auction_id, :user_id)
 	end
 end
