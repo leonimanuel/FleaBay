@@ -5,6 +5,7 @@ class BidsController < ApplicationController
 
 	def index
 		open_bids(@user)
+		closed_bids(@user)
 	end
 
 	def new
