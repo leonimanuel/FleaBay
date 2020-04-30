@@ -14,6 +14,16 @@ class UsersController < ApplicationController
 		@user = User.find(session[:user_id])
 	end
 
+	def edit
+		@user = User.find(session[:user_id])
+	end
+
+	def update
+		user = User.update(user_params)
+
+		redirect_to user_path(user)
+	end
+
 	def purchases
 		@items = Item.bought(session)
 	end
