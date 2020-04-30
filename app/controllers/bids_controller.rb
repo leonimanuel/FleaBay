@@ -1,9 +1,12 @@
 class BidsController < ApplicationController
 	include UsersHelper
+	include BidsHelper
 	before_action :current_user
 
 	def index
-		@bidded_auctions = @user.bids.collect { |bid| bid.auction }.uniq
+		@open_bids = @user.auctions.open
+		# @open_bids = open_bids(@user)
+		# @bidded_auctions = @user.bids.collect { |bid| bid.auction }.uniq
 	end
 
 	def new

@@ -3,7 +3,7 @@ class Auction < ApplicationRecord
 	has_one :item
 	has_many :bids
 
-	def self.open
+	def self.active
 		where(open: true).all
 	end
 
