@@ -1,3 +1,14 @@
+<form action="/auctions/<%= params[:condition] %>" method="GET">
+	<select name="condition" id="item_condition">
+	  <option value="excellent">excellent</option>
+	  <option value="good">good</option>
+	  <option value="fair" >fair</option>
+	  <option value="poor">poor</option>
+	</select>
+	<input type="submit" value="search">
+</form>
+
+
 <% if params[:user_id] %>
 	<h1>Your Auctions</h1>
 	<h3><%= link_to "Auction New Item", new_user_auction_path(@user) %></h3>

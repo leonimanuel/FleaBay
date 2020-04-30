@@ -4,8 +4,11 @@ class AuctionsController < ApplicationController
 	# before_auction :close_expired
 
 	def index
+		binding.pry
 		if params[:user_id]
 			@auctions = @user.auctions.active
+		elsif params[:condition]
+			@auctions = Item.where(condition: params[:condition]).collect { |item| item.auction }
 		else
 			@auctions = Auction.active
 		end

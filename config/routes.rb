@@ -6,8 +6,13 @@ Rails.application.routes.draw do
 
   resources :bids, only: [:new, :create, :edit, :update]
   resources :items
-  resources :auctions, only: [:index, :show]
+  post "/conditions" => "items#conditions"
   
+  resources :auctions, only: [:index, :show] do
+    # get "/:condition" => "auctions#index"
+  end
+  get "/auctions/:condition" => "auctions#index"
+
   resources :users do
 	  resources :auctions
     resources :bids, only: [:index]
@@ -21,7 +26,6 @@ Rails.application.routes.draw do
   # resources :sessions, only: [:new, :create, :edit, :update]
   delete "/logout" => "sessions#delete"
   # delete "/logout" => "sessions"
-
 
    # get "/users/:id/items" => "users#items"
   # get "/home" => "users#home"
