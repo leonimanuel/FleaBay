@@ -1,9 +1,17 @@
 class SessionsController < ApplicationController
-	def new
+	# def new
+	# 	render "signup"
+	# end
+
+	# def create
+		
+	# end
+
+	def login
 		render "login"
 	end
 
-	def create
+	def create_login
 		user = User.find_by(email: params[:email])
 		if user.authenticate(params[:password])
 			session[:user_id] = user.id
