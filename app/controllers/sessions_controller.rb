@@ -13,6 +13,6 @@ class SessionsController < ApplicationController
 
 	def delete
 		session.delete :user_id
-		redirect_to "/login"
+		redirect_to "/"
 	end
 end
