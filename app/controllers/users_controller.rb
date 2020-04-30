@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+	include UsersHelper
+	before_action :current_user
+
 	def new
 		@user = User.new
 	end
@@ -25,7 +28,7 @@ class UsersController < ApplicationController
 	end
 
 	def purchases
-		@items = Item.bought(session)
+		purchased_items(@user)
 	end
 
 

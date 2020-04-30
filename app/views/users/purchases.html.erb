@@ -1,7 +1,7 @@
 <h1>Your Purchases</h1>
 
 <ol>
-	<%= @items.each do |item| %>
-		<li>item.name</li>
+	<% @items.each do |item| %>
+		<li><%= link_to item.name, auction_path(item.auction) %></li>
 	<% end %>
 </ol>
