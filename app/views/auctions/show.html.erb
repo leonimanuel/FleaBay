@@ -10,9 +10,14 @@
 
 <h3>Seller: <%= @auction.item.seller.name %></h3>
 
-<% if @user != @auction.item.seller %>
-	<%= render "bids/form" %>
+<% if is_logged_in? %>
+	<% if @user != @auction.item.seller %>
+		<%= render "bids/form" %>
+	<% end %>
+<% else %>
+	<p><%= link_to "Log in", "/login" %> or <%= link_to "sign up", new_user_path %> to bid on this item.</p>
 <% end %>
+
 
 <% if !@auction.bids.empty? %>
 	<% if @user == @auction.highest_bidder %>
