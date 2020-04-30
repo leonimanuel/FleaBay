@@ -4,9 +4,7 @@ class BidsController < ApplicationController
 	before_action :current_user
 
 	def index
-		@open_bids = @user.auctions.open
-		# @open_bids = open_bids(@user)
-		# @bidded_auctions = @user.bids.collect { |bid| bid.auction }.uniq
+		open_bids(@user)
 	end
 
 	def new
