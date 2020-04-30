@@ -1,12 +1,4 @@
 class SessionsController < ApplicationController
-	# def new
-	# 	render "signup"
-	# end
-
-	# def create
-		
-	# end
-
 	def login
 		render "login"
 	end
@@ -24,3 +16,4 @@ class SessionsController < ApplicationController
 		redirect_to "/"
 	end
 end
+

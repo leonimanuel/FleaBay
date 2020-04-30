@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   get "/login" => "sessions#login"
   post "/login" => "sessions#create_login"
-  get "/signup" => "sessions#new"
+  # get "/signup" => "sessions#new"
   # resources :sessions, only: [:new, :create, :edit, :update]
   delete "/logout" => "sessions#delete"
   # delete "/logout" => "sessions"
