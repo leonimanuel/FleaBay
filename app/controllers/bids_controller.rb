@@ -2,9 +2,9 @@ class BidsController < ApplicationController
 	include UsersHelper
 	before_action :current_user
 
-	# def index
-	# 	@bids = @user.bids
-	# end
+	def index
+		@bidded_auctions = @user.bids.collect { |bid| bid.auction }.uniq
+	end
 
 	def new
 		@bid = Bid.new(user: User.find(session[:user_id]))

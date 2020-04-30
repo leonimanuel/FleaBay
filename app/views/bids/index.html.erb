@@ -1,7 +1,7 @@
 <h1>Your active bids</h1>
 
 <ol>
-	<% @bids.each do |bid| %>
-		<li><%= bid.item.name %></li>
+	<% @bidded_auctions.each do |auction| %>
+		<li><%= link_to auction.item.name, auction_path(auction) %></li>
 	<% end %>
 </ol>
