@@ -1,3 +1,5 @@
+<h3 class="red"><%= "This auction has closed" if !@auction.open %></h3>
+
 <h1><%= @auction.item.name %></h1>
 
 <% if @auction.bids.empty?%>
@@ -11,7 +13,7 @@
 <h3>Seller: <%= @auction.item.seller.name %></h3>
 
 <% if is_logged_in? %>
-	<% if @user != @auction.item.seller %>
+	<% if @user != @auction.item.seller && @auction.open %>
 		<%= render "bids/form" %>
 	<% end %>
 <% else %>

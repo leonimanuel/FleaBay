@@ -27,3 +27,7 @@ body {
 	border-right: 1px solid black;
 	padding: 0 10px;
 }
+
+.red {
+	color: red;
+}
