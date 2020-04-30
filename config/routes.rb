@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   # resources :item_categories
   # resources :categories
+  get "/" => "auctions#index"
+
   resources :bids, only: [:new, :create, :edit, :update]
   resources :items
   resources :auctions, only: [:index, :show]
@@ -14,7 +16,7 @@ Rails.application.routes.draw do
   end
 
   get "/login" => "sessions#login"
-  post "/login" => "sessions#create_login"
+  post "/login" => "sessions#create"
   # get "/signup" => "sessions#new"
   # resources :sessions, only: [:new, :create, :edit, :update]
   delete "/logout" => "sessions#delete"
