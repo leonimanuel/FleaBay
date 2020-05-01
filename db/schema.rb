@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_29_030320) do
+ActiveRecord::Schema.define(version: 2020_05_01_022840) do
+
+  create_table "auction_categories", force: :cascade do |t|
+    t.integer "auction_id", null: false
+    t.integer "category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["auction_id"], name: "index_auction_categories_on_auction_id"
+    t.index ["category_id"], name: "index_auction_categories_on_category_id"
+  end
 
   create_table "auctions", force: :cascade do |t|
     t.datetime "close_time"
@@ -36,15 +45,6 @@ ActiveRecord::Schema.define(version: 2020_04_29_030320) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "item_categories", force: :cascade do |t|
-    t.integer "item_id", null: false
-    t.integer "category_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["category_id"], name: "index_item_categories_on_category_id"
-    t.index ["item_id"], name: "index_item_categories_on_item_id"
-  end
-
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.string "price"
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2020_04_29_030320) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "item_categories", "categories"
-  add_foreign_key "item_categories", "items"
+  add_foreign_key "auction_categories", "auctions"
+  add_foreign_key "auction_categories", "categories"
   add_foreign_key "items", "users"
 end
