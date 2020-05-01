@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     get "/purchases" => "users#purchases"	
   end
 
+  get "/auth/facebook/callback" => "sessions#create"
   get "/login" => "sessions#login"
   post "/login" => "sessions#create"
   # get "/signup" => "sessions#new"

@@ -9,6 +9,8 @@ class AuctionsController < ApplicationController
 
 		if params[:user_id]
 			@auctions = @user.auctions.active
+		# elsif params[:condition] && params[:category]
+		# 	@auctions = Item.where(condition: params[:condition]).collect { |item| item.auction }.all.select { |auction| auction.categories.include?(Category.find_by(name: params[:category])) }
 		elsif params[:condition]
 			@auctions = Item.where(condition: params[:condition]).collect { |item| item.auction }
 		elsif params[:category]
