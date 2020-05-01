@@ -4,7 +4,7 @@ class AuctionsController < ApplicationController
 	# before_auction :close_expired
 
 	def index
-		binding.pry
+		# binding.pry
 		if params[:user_id]
 			@auctions = @user.auctions.active
 		elsif params[:condition]
@@ -38,6 +38,10 @@ class AuctionsController < ApplicationController
 		redirect_to user_auctions_path(@user)
 	end
 
+	def conditions
+		
+	end
+
 
 	private
 
@@ -47,5 +51,9 @@ class AuctionsController < ApplicationController
 
 	def item_params
 		params.require(:auction).permit(:name, :condition, :user_id)
+	end
+
+	def condition_params
+		params.require(:auction).permit(:condition)
 	end
 end

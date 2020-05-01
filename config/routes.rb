@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :bids, only: [:new, :create, :edit, :update]
   resources :items
-  post "/conditions" => "items#conditions"
+  # post "/conditions" => "auctions#conditions"
   
   resources :auctions, only: [:index, :show] do
     # get "/:condition" => "auctions#index"

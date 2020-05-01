@@ -1,9 +1,9 @@
-<form action="/auctions/<%= params[:condition] %>" method="GET">
+<form action="/auctions" method="GET">
 	<select name="condition" id="item_condition">
-	  <option value="excellent">excellent</option>
-	  <option value="good">good</option>
-	  <option value="fair" >fair</option>
-	  <option value="poor">poor</option>
+	  <option value="excellent" <%= "selected" if params[:condition] == "excellent" %>>excellent</option>
+	  <option value="good" <%= "selected" if params[:condition] == "good" %>>good</option>
+	  <option value="fair" <%= "selected" if params[:condition] == "fair" %>>fair</option>
+	  <option value="poor" <%= "selected" if params[:condition] == "poor" %>>poor</option>
 	</select>
 	<input type="submit" value="search">
 </form>
