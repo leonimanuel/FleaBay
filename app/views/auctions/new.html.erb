@@ -24,5 +24,9 @@
 	<%= f.label :close_time, "Closing Date/Time:" %>
 	<%= f.datetime_field :close_time %> <br>
 
+	<% @categories.each do |c| %>
+  	<input type="checkbox" name="auction[category][]" id="<%= c.id %>" value="<%= c.name %>"><%= c.name %><br>
+	<% end %>
+
 	<%= f.submit "Create Auction"%>
 <% end %>

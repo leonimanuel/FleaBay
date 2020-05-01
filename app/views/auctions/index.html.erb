@@ -5,9 +5,17 @@
 	  <option value="fair" <%= "selected" if params[:condition] == "fair" %>>fair</option>
 	  <option value="poor" <%= "selected" if params[:condition] == "poor" %>>poor</option>
 	</select>
-	<input type="submit" value="search">
+	<input type="submit" value="search by Condition">
 </form>
 
+<form action="/auctions" method="GET">
+	<select name="category" id="auction_category">
+		<% @categories.each do |c| %>
+		  <option value="<%=c.name %>"><%= c.name %></option>		
+		<% end %>
+	</select>
+	<input type="submit" value="search by Category">
+</form>
 
 <% if params[:user_id] %>
 	<h1>Your Auctions</h1>

@@ -5,10 +5,14 @@ class AuctionsController < ApplicationController
 
 	def index
 		# binding.pry
+		@categories = Category.all
+
 		if params[:user_id]
 			@auctions = @user.auctions.active
 		elsif params[:condition]
 			@auctions = Item.where(condition: params[:condition]).collect { |item| item.auction }
+		elsif params[:category]
+			@auctions = Auction.all.select { |auction| auction.categories.include?(Category.find_by(name: params[:category])) }
 		else
 			@auctions = Auction.active
 		end
@@ -27,21 +31,22 @@ class AuctionsController < ApplicationController
 
 	def new
 		@auction = Auction.new(user: User.find(params[:user_id]))
+		@categories = Category.all
 	end
 
 	def create
 		auction = Auction.create(auction_params)
+		params[:auction][:category].each do |category|
+			auction.categories << Category.find_by(name: category)
+		end
+
 		item = Item.new(item_params)
 		item.auction = auction
 		item.save
+		binding.pry
 
 		redirect_to user_auctions_path(@user)
 	end
-
-	def conditions
-		
-	end
-
 
 	private
 
@@ -53,7 +58,7 @@ class AuctionsController < ApplicationController
 		params.require(:auction).permit(:name, :condition, :user_id)
 	end
 
-	def condition_params
-		params.require(:auction).permit(:condition)
+	def category_params
+		params.require(:auction).permit(:category)
 	end
 end
