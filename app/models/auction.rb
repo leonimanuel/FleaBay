@@ -3,6 +3,9 @@ class Auction < ApplicationRecord
 	has_one :item
 	has_many :bids
 
+	has_many :auction_categories
+	has_many :categories, through: :auction_categories
+
 	def self.active
 		where(open: true).all
 	end
