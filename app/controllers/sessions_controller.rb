@@ -11,17 +11,22 @@ class SessionsController < ApplicationController
 	      # u.image = auth['info']['image']
       	u.password_digest = SecureRandom.urlsafe_base64
     	end
+
+			session[:user_id] = user.id
+			binding.pry
+			redirect_to "/"
+  	else
+			user = User.find_or_create_by(email: params[:email])
+			if user.authenticate(params[:password])
+				session[:user_id] = user.id
+				binding.pry
+				redirect_to user_path(user)
+			end
 		end
 
-		session[:user_id] = user.id
-		binding.pry
-		redirect_to "/"
 
-		# user = User.find_or_create_by(email: params[:email])
-		# if user.authenticate(params[:password])
-		# 	session[:user_id] = user.id
-		# 	redirect_to user_path(user)
-		# end
+
+
 	end
 
 	def auth
