@@ -15,7 +15,10 @@
       <div id="nav-home" class="nav-item"><%= link_to "Home", auctions_path %></div>
       <!-- <div class="nav-item">My account</div> -->
       <% if current_user %>
-        <div id="nav-home" class="nav-item"><%= link_to "My account", user_path(User.find(session[:user_id])) %></div>     
+        <div id="nav-home" class="nav-item"><%= link_to "My account", user_path(User.find(session[:user_id])) %></div>  
+      <% else %>
+        <div id="nav-login" class="nav-item"><%= link_to "Log in", "/login" %></div>
+        <div id="nav-signup" class="nav-item"><%= link_to "Sign Up", "/signup" %></div>
       <% end %>
 
     </div>

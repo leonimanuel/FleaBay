@@ -20,8 +20,11 @@ Rails.application.routes.draw do
     get "/purchases" => "users#purchases"	
   end
 
+  resources :sessions
   get "/auth/facebook/callback" => "sessions#create"
   get "/login" => "sessions#login"
+  get "/signup" => "sessions#signup"
+  
   post "/login" => "sessions#create"
   # get "/signup" => "sessions#new"
   # resources :sessions, only: [:new, :create, :edit, :update]
