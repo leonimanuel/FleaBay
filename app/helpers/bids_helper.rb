@@ -10,8 +10,4 @@ module BidsHelper
 		@closed_bids = Auction.where(id: auction_array.map(&:id)).closed
 		# user.bids.collect { |bid| bid.auction }.uniq.each.collect { |auction| auction.open == false}
 	end
-
-	def invalidBid(bid)
-		bid
-	end
 end

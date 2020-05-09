@@ -1,4 +1,5 @@
 <%= form_with model: @bid, local: true do |f| %>
+	<% binding.pry %>
 	<%= f.hidden_field :user_id, value: @user.id %>	
 	<%= f.hidden_field :auction_id, value: @auction.id %>	
 
