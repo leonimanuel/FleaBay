@@ -10,12 +10,12 @@ class SessionsController < ApplicationController
 	def create
 		# binding.pry
 		if auth
-			raise "w that fb eh"
+			# raise "w that fb eh"
 			user = User.find_or_create_by(email: auth["info"]["email"]) do |u|
 				u.name = auth["info"]["name"]
 	      # u.email = auth['info']['email']
 	      # u.image = auth['info']['image']
-      	u.password_digest = SecureRandom.urlsafe_base64
+      	u.password_digest = SecureRandom.hex
     	end
 			session[:user_id] = user.id
 			redirect_to "/"
@@ -29,8 +29,6 @@ class SessionsController < ApplicationController
 		else
 			user = User.create(session_params)
 			session[:user_id] = user.id
-			binding.pry
-
 			redirect_to user_path(user)
 		end
 	end

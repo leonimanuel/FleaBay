@@ -13,9 +13,20 @@ class BidsController < ApplicationController
 	end
 
 	def create
-		bid = Bid.create(bid_params)
+		@bid = Bid.new(bid_params)
+		# binding.pry
+		if @bid.valid?
+			@bid.save
+			redirect_to auction_path(params[:bid][:auction_id])
+		else
+			# need to somehow keep this definition of bid
+			# redirect_to auction_path(params[:bid][:auction_id])
 
-		redirect_to auction_path(params[:bid][:auction_id])
+			# binding.pry
+			@auction = Auction.find(params[:bid][:auction_id])
+			render :"auctions/show"
+		end
+		# @bid = Bid.create(bid_params)
 	end
 
 	def edit

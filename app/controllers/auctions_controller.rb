@@ -22,6 +22,8 @@ class AuctionsController < ApplicationController
 
 	def show
 		@auction = Auction.find(params[:id])
+		
+		# if what?
 		@bid = Bid.new
 		
 		if !@auction.bids.empty?

@@ -1,10 +1,11 @@
-<%= form_with model: @bid do |f| %>
+<%= form_with model: @bid, local: true do |f| %>
 	<%= f.hidden_field :user_id, value: @user.id %>	
 	<%= f.hidden_field :auction_id, value: @auction.id %>	
 
 	<%= f.label :amount, "Place Bid: $" %>
-	<%= f.text_field :amount %>
-
+  <div class="field<%= ' field_with_errors' if @bid.errors[:amount].any?%>">
+		<%= f.text_field :amount %>
+	<div>
 	<%= f.submit "Place Bid" %>		
 <% end %>
 
