@@ -1,11 +1,16 @@
 <%= form_with model: @bid, local: true do |f| %>
 	<% binding.pry %>
+
+	<% if @bid.errors.any? %>
+		<p>Prublem</p>
+	<% end %>
 	<%= f.hidden_field :user_id, value: @user.id %>	
 	<%= f.hidden_field :auction_id, value: @auction.id %>	
 
 	<%= f.label :amount, "Place Bid: $" %>
   <div class="field<%= ' field_with_errors' if @bid.errors[:amount].any?%>">
 		<%= f.text_field :amount %>
+		<span><%= @bid.errors[:amount].first if @bid.errors[:amount].any? %></span>
 	<div>
 	<%= f.submit "Place Bid" %>		
 <% end %>

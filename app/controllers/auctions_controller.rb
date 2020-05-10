@@ -23,8 +23,19 @@ class AuctionsController < ApplicationController
 	def show
 		@auction = Auction.find(params[:id])
 		
-		# if what?
-		@bid = Bid.new
+		if session[:invalid_bid]
+			@bid = Bid.new(
+				amount: session[:invalid_bid]["amount"], 
+				auction_id: session[:invalid_bid]["auction_id"], 
+				user_id: session[:invalid_bid]["user_id"]
+			)
+			session.delete :invalid_bid
+			binding.pry
+		else
+			@bid = Bid.new			
+		end
+			# @bid = Bid.new			
+
 		
 		if !@auction.bids.empty?
 			@highest_bid = @auction.bids.highest_bid.first.amount 
