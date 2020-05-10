@@ -14,7 +14,7 @@ class BidsController < ApplicationController
 
 	def create
 		@bid = Bid.new(bid_params)
-		# binding.pry
+		binding.pry
 		if @bid.valid?
 			@bid.save
 			redirect_to auction_path(params[:bid][:auction_id])
@@ -22,7 +22,6 @@ class BidsController < ApplicationController
 			# need to somehow keep this definition of bid
 			# redirect_to auction_path(params[:bid][:auction_id])
 
-			binding.pry
 			@auction = Auction.find(params[:bid][:auction_id])
 			# render :"auctions/show"
 			session[:invalid_bid] = @bid
