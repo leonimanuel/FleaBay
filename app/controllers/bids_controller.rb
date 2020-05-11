@@ -14,7 +14,6 @@ class BidsController < ApplicationController
 
 	def create
 		@bid = Bid.new(bid_params)
-		binding.pry
 		if @bid.valid?
 			@bid.save
 			redirect_to auction_path(params[:bid][:auction_id])

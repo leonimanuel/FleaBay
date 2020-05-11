@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
 	def login
+		
 		render "login"
 	end
 
@@ -24,12 +25,31 @@ class SessionsController < ApplicationController
 			# raise "TRYing to log in huh bud?"
 			if user.authenticate(params[:password])
 				session[:user_id] = user.id
+				flash[:notice] = "niiice login bruh"
+				binding.pry
 				redirect_to user_path(user)
+			else
+				user.errors.add(:password, "Email and password not match")
+				cookies[:invalid_login] = true
+				flash[:error] = "#{user.errors[:password][0]}"
+				# session[:user_email] = 
+				redirect_to "/login"
 			end
 		else
-			user = User.create(session_params)
-			session[:user_id] = user.id
-			redirect_to user_path(user)
+			user = User.new(session_params)
+			if user.valid?
+				session[:user_id] = user.id
+				redirect_to user_path(user)				
+			else
+				cookies[:invalid_login] = true
+				flash[:error] = "Hold Up"	
+				if params[:name]
+					redirect_to "/signup"					
+				else
+					redirect_to "/login"
+				end
+		
+			end
 		end
 	end
 

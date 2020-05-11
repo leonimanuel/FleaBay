@@ -22,7 +22,6 @@ class AuctionsController < ApplicationController
 
 	def show
 		@auction = Auction.find(params[:id])
-				binding.pry
 
 		if session[:invalid_bid]
 			@bid = Bid.new(

@@ -1,11 +1,25 @@
 <h1>Log in</h1>
 
 <%= form_tag ({url: "/login", method: 'POST'}) do %>
-	<%= label_tag :email %>
-	<%= text_field_tag :email%> <br>
-	<%= label_tag :password %>
-	<%= text_field_tag :password%> <br>
+  <div class="field<%= ' field_with_errors' if cookies[:invalid_login]%>">
+		<%= label_tag :email %>
+		<%= text_field_tag :email%> <br>
+		<% flash.each do |name, msg| %>
+			<%= content_tag :p, msg, class: name %>
+		<% end %>
+	<div>
+  <div class="field<%= ' field_with_errors' if cookies[:invalid_login]%>">
+		<%= label_tag :password %>
+		<%= text_field_tag :password%> <br>
+		<% flash.each do |name, msg| %>
+			<%= content_tag :p, msg, class: name %>
+		<% end %>
+	<div>
+
 	<%= submit_tag "Log In" %>
 <% end %>
 
 <%= link_to "Log in with Facebook", "/auth/facebook" %>
+
+<!-- so error messages don't persist on page reload -->
+<% cookies.delete :invalid_login %>

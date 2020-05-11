@@ -16,7 +16,6 @@
 
 <% if is_logged_in? %>
 	<% if @user != @auction.item.seller && @auction.open %>
-		<% binding.pry %>
 		<%= render "bids/form" %>
 	<% end %>
 <% else %>
