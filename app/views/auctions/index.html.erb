@@ -8,14 +8,7 @@
 	<input type="submit" value="search by Condition">
 </form>
 
-<form action="/auctions" method="GET">
-	<select name="category" id="auction_category">
-		<% @categories.each do |c| %>
-		  <option value="<%=c.name %>"><%= c.name %></option>		
-		<% end %>
-	</select>
-	<input type="submit" value="search by Category">
-</form>
+
 
 <% if params[:user_id] %>
 	<h1>Your Auctions</h1>
@@ -27,15 +20,17 @@
 	</ol>
 <% else %>
 	<h1>All Auctions</h1>
+	<% @categories.each do |c| %>
+		<%= form_with model: c, url: auctions_path, method: "GET", local: true do |f| %>	
+			<%= f.hidden_field :category_id, value: "#{c.id}" %>
+			<%= f.submit c.name %>
+		<% end %>
+	<% end %>
+
 	<ol>
+		<% binding.pry %>
 		<% @auctions.each do |auction| %>
-			<% unless auction.user == @user %>
-				<li><%= link_to auction.item.name, auction_path(auction) %></li>
-			<% end %>
+				<li><%= auction.item.name %></li>
 		<% end %>
 	</ol>
 <% end %>
-
-
-
-

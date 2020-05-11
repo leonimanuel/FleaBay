@@ -56,14 +56,7 @@ class SessionsController < ApplicationController
 			user.errors.messages.each do |attr, val|
 				flash["invalid_#{attr}"] = "#{attr} #{val[0]}"
 			end
-			# flash[:error] = user.errors.messages	
-			# cookies[:invalid_login] = true
-			# flash[:error] = "Hold Up"	
-			# if params[:name]
-			# 	redirect_to "/signup"					
-			# else
-				redirect_to "/signup"
-			# end
+			redirect_to "/signup"
 		end
 	end
 

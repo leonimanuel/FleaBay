@@ -27,6 +27,7 @@ end
 	auction = Auction.create(user: User.all.sample)
 	auction.update(starting_price: Faker::Commerce.price(range: 0..500.0))
 	auction.update(close_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now + 3))
+	auction.categories << Category.all.sample
 
 	item = Item.create(name: Faker::Commerce.product_name, 
 		condition: condition.sample,

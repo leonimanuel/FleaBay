@@ -14,6 +14,10 @@ class UsersController < ApplicationController
 	end
 
 	def show
+		if params[:id].to_i != current_user.id 
+			# raise "WHHHH"
+			redirect_to user_path(current_user)
+		end
 		@user = User.find(session[:user_id])
 	end
 
