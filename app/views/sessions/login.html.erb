@@ -1,19 +1,16 @@
 <h1>Log in</h1>
 
 <%= form_tag ({url: "/login", method: 'POST'}) do %>
+  <%= flash[:invalid_login] %>
   <div class="field<%= ' field_with_errors' if cookies[:invalid_login]%>">
 		<%= label_tag :email %>
 		<%= text_field_tag :email%> <br>
-		<% flash.each do |name, msg| %>
-			<%= content_tag :p, msg, class: name %>
-		<% end %>
+		<%= flash[:blank_email] %>
 	<div>
   <div class="field<%= ' field_with_errors' if cookies[:invalid_login]%>">
 		<%= label_tag :password %>
 		<%= text_field_tag :password%> <br>
-		<% flash.each do |name, msg| %>
-			<%= content_tag :p, msg, class: name %>
-		<% end %>
+		<%= flash[:blank_password] %>
 	<div>
 
 	<%= submit_tag "Log In" %>

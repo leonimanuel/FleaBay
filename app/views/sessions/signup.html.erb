@@ -1,13 +1,10 @@
 <h1>Sign Up</h1>
 
-<!-- <form action="/login" method="POST">
-	<span>Name: <input type="text" name="name"></span> <br>
-	<span>Email: <input type="text" name="email"></span> <br>	
-	<span>Password: <input type="text" name="password"></span> <br>
-	<input type="submit" value="Sign Up">
-</form> -->
+  <% flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, class: name %>
+  <% end %>
 
-<%= form_tag(sessions_path) do %>
+<%= form_tag ({url: "/signup", method: 'POST'}) do %>
 	<%= label_tag :name %>
 	<%= text_field_tag :name %> <br>
 	<%= label_tag :email %>
@@ -18,3 +15,6 @@
 <% end %>
 
 <%= link_to "Log in with Facebook", "/auth/facebook" %>
+
+<!-- so error messages don't persist on page reload -->
+<% cookies.delete :invalid_login %>

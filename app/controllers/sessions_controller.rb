@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 		render "signup"
 	end
 
-	def create
+	def create_login
 		# binding.pry
 		if auth
 			# raise "w that fb eh"
@@ -20,36 +20,50 @@ class SessionsController < ApplicationController
     	end
 			session[:user_id] = user.id
 			redirect_to "/"
-  	
   	elsif user = User.find_by(email: params[:email])
 			# raise "TRYing to log in huh bud?"
 			if user.authenticate(params[:password])
 				session[:user_id] = user.id
 				flash[:notice] = "niiice login bruh"
-				binding.pry
 				redirect_to user_path(user)
 			else
-				user.errors.add(:password, "Email and password not match")
+				user.errors.add(:password, "Email and password do not match")
 				cookies[:invalid_login] = true
-				flash[:error] = "#{user.errors[:password][0]}"
+				flash[:invalid_login] = "#{user.errors[:password][0]}"
 				# session[:user_email] = 
 				redirect_to "/login"
 			end
-		else
-			user = User.new(session_params)
-			if user.valid?
-				session[:user_id] = user.id
-				redirect_to user_path(user)				
+		else #if email is invalid or blank
+			cookies[:invalid_login] = true
+			if params[:email].empty?
+				flash[:invalid_login] = "Email cannot be empty"
+			# elsif	params[:password].empty?
+			# 	flash[:invalid_login] = "Password cannot be empty"				
 			else
-				cookies[:invalid_login] = true
-				flash[:error] = "Hold Up"	
-				if params[:name]
-					redirect_to "/signup"					
-				else
-					redirect_to "/login"
-				end
-		
+				flash[:invalid_login] = "Email and password do not match"
 			end
+			redirect_to "/login"
+		end
+	end
+
+	def create_signup
+		user = User.new(session_params)
+		if user.valid?
+			user.save
+			session[:user_id] = user.id
+			redirect_to user_path(user)				
+		else
+			user.errors.messages.each do |attr, val|
+				flash["invalid_#{attr}"] = "#{attr} #{val[0]}"
+			end
+			# flash[:error] = user.errors.messages	
+			# cookies[:invalid_login] = true
+			# flash[:error] = "Hold Up"	
+			# if params[:name]
+			# 	redirect_to "/signup"					
+			# else
+				redirect_to "/signup"
+			# end
 		end
 	end
 
