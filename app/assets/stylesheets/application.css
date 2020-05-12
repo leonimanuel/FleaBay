@@ -37,3 +37,18 @@ body {
   background-color: red;
   display: table;
 }
+
+#main-logo {
+	margin: 0;
+	text-align: center;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 3em;
+	/*border: 1px solid red;*/
+}
+
+.logo-letter {
+	/*border: 1px solid black;*/
+	margin: 0;
+}
+
+

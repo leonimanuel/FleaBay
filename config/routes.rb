@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   
   resources :auctions, only: [:index, :show] do
     # get "/:condition" => "auctions#index"
+    # get "/:category" => "auctions#index"  
+    resources :categories, only: [:index, :show]  
   end
   get "/auctions/:condition" => "auctions#index"
 

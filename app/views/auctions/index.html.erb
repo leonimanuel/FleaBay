@@ -1,5 +1,6 @@
 <form action="/auctions" method="GET">
 	<select name="condition" id="item_condition">
+	  <option value="all" <%= "selected" if params[:condition] == "all" %>>all</option>	  
 	  <option value="excellent" <%= "selected" if params[:condition] == "excellent" %>>excellent</option>
 	  <option value="good" <%= "selected" if params[:condition] == "good" %>>good</option>
 	  <option value="fair" <%= "selected" if params[:condition] == "fair" %>>fair</option>
@@ -21,16 +22,15 @@
 <% else %>
 	<h1>All Auctions</h1>
 	<% @categories.each do |c| %>
-		<%= form_with model: c, url: auctions_path, method: "GET", local: true do |f| %>	
+		<%= form_with model: c, url: auctions_path, method: "GET", local: true, class: "category" do |f| %>	
 			<%= f.hidden_field :category_id, value: "#{c.id}" %>
 			<%= f.submit c.name %>
 		<% end %>
 	<% end %>
 
 	<ol>
-		<% binding.pry %>
 		<% @auctions.each do |auction| %>
-				<li><%= auction.item.name %></li>
+				<li><%= link_to auction.item.name, auction_path(auction) %></li>
 		<% end %>
 	</ol>
 <% end %>

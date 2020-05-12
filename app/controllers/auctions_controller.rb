@@ -4,16 +4,18 @@ class AuctionsController < ApplicationController
 	# before_auction :close_expired
 
 	def index
-		binding.pry
 		@categories = Category.all
 
 		if params[:user_id]
 			@auctions = @user.auctions.active
 		elsif params[:condition]
-			@auctions = Item.where(condition: params[:condition]).collect { |item| item.auction }
+			if params[:condition] == "all"
+				@auctions = Auction.active
+			else
+				@auctions = Item.where(condition: params[:condition]).collect { |item| item.auction }				
+			end
 		elsif params[:category]
 			@auctions = Auction.all.select { |auction| auction.categories.include?(Category.find(params[:category][:category_id])) }
-			binding.pry
 		else
 			@auctions = Auction.active
 		end
