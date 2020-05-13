@@ -1,16 +1,3 @@
-<form action="/auctions" method="GET">
-	<select name="condition" id="item_condition">
-	  <option value="all" <%= "selected" if params[:condition] == "all" %>>all</option>	  
-	  <option value="excellent" <%= "selected" if params[:condition] == "excellent" %>>excellent</option>
-	  <option value="good" <%= "selected" if params[:condition] == "good" %>>good</option>
-	  <option value="fair" <%= "selected" if params[:condition] == "fair" %>>fair</option>
-	  <option value="poor" <%= "selected" if params[:condition] == "poor" %>>poor</option>
-	</select>
-	<input type="submit" value="search by Condition">
-</form>
-
-
-
 <% if params[:user_id] %>
 	<h1>Your Auctions</h1>
 	<h3><%= link_to "Auction New Item", new_user_auction_path(@user) %></h3>
@@ -21,6 +8,18 @@
 	</ol>
 <% else %>
 	<h1>All Auctions</h1>
+
+	<form action="/auctions" method="GET">
+		<select name="condition" id="item_condition">
+		  <option value="all" <%= "selected" if params[:condition] == "all" %>>all</option>	  
+		  <option value="excellent" <%= "selected" if params[:condition] == "excellent" %>>excellent</option>
+		  <option value="good" <%= "selected" if params[:condition] == "good" %>>good</option>
+		  <option value="fair" <%= "selected" if params[:condition] == "fair" %>>fair</option>
+		  <option value="poor" <%= "selected" if params[:condition] == "poor" %>>poor</option>
+		</select>
+		<input type="submit" value="search by Condition">
+	</form>
+
 	<% @categories.each do |c| %>
 		<%= form_with model: c, url: auctions_path, method: "GET", local: true, class: "category" do |f| %>	
 			<%= f.hidden_field :category_id, value: "#{c.id}" %>
