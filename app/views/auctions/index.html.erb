@@ -29,11 +29,6 @@
 		<% end %>
 	<% end %>
 
-	<!-- LINKS -->
-	<% @categories.each do |c| %>
-		<%= link_to c.name, auctions_category_path(c.name) %>
-	<% end %>
-
 	<ol>
 		<% @auctions.each do |auction| %>
 				<li><%= link_to auction.item.name, auction_path(auction) %></li>
