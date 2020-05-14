@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
 			# raise "TRYing to log in huh bud?"
 			if user.authenticate(params[:password])
 				session[:user_id] = user.id
-				flash[:notice] = "niiice login bruh"
+				# flash[:notice] = "niiice login bruh"
 				redirect_to user_path(user)
 			else
 				user.errors.add(:password, "Email and password do not match")

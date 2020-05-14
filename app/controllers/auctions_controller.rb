@@ -6,7 +6,6 @@ class AuctionsController < ApplicationController
 
 	def index
 		@categories = Category.all
-		binding.pry
 		if params[:user_id]
 			@auctions = @user.auctions.active
 		elsif params[:condition]
