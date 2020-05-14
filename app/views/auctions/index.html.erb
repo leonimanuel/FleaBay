@@ -22,6 +22,11 @@
 	<br>
 
 	<!-- FORMS -->
+	<%= form_with url: auctions_path, method: "GET", local: true, class: "category" do |f| %>	
+		<%= f.hidden_field :category, value: "all" %>
+		<%= f.submit "All" %>
+	<% end %>
+
 	<% @categories.each do |c| %>
 		<%= form_with model: c, url: auctions_path, method: "GET", local: true, class: "category" do |f| %>	
 			<%= f.hidden_field :category_id, value: "#{c.id}" %>
