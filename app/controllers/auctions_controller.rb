@@ -1,12 +1,12 @@
 class AuctionsController < ApplicationController
 	include UsersHelper
+	include AuctionsHelper
 	before_action :current_user
-	# before_auction :close_expired
+	before_action :update_auctions_status
 
 	def index
-		binding.pry
 		@categories = Category.all
-
+		binding.pry
 		if params[:user_id]
 			@auctions = @user.auctions.active
 		elsif params[:condition]
@@ -19,7 +19,7 @@ class AuctionsController < ApplicationController
 			if params[:category] == "all"
 				@auctions = Auction.active
 			else
-				@auctions = Auction.all.select { |auction| auction.categories.include?(Category.find(params[:category][:category_id])) }
+				@auctions = Auction.active.select { |auction| auction.categories.include?(Category.find(params[:category][:category_id])) }
 			end
 		else
 			@auctions = Auction.active
