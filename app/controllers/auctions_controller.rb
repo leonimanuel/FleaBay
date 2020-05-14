@@ -39,7 +39,6 @@ class AuctionsController < ApplicationController
 		else
 			@bid = Bid.new			
 		end
-			# @bid = Bid.new			
 		if !@auction.bids.empty?
 			@highest_bid = @auction.bids.highest_bid.first.amount 
 			@highest_bidder = @auction.highest_bidder
@@ -60,7 +59,6 @@ class AuctionsController < ApplicationController
 		item = Item.new(item_params)
 		item.auction = auction
 		item.save
-		binding.pry
 
 		redirect_to user_auctions_path(@user)
 	end
