@@ -10,7 +10,16 @@
   </head>
 
   <body>
-    <p>User: <%= current_user.name if current_user %></p>
+    <div id="nav-menu">
+      <div id="nav-home" class="nav-item"><%= link_to "Home", auctions_path %></div>
+      <!-- <div class="nav-item">My account</div> -->
+      <% if current_user %>
+        <div id="nav-home" class="nav-item"><%= link_to "#{current_user.name}'s account", user_path(User.find(session[:user_id])) %></div>  
+      <% else %>
+        <div id="nav-login" class="nav-item"><%= link_to "Log in", "/login" %></div>
+        <div id="nav-signup" class="nav-item"><%= link_to "Sign Up", "/signup" %></div>
+      <% end %>
+    </div>
     <div id="main-logo">
       <span class="logo-letter" style='color: rgb(0, 191, 255)'>F</span>
       <span class="logo-letter" style='color: rgb(0, 191, 255)'>l</span>
@@ -19,17 +28,6 @@
       <span class="logo-letter" style='color: blue'>b</span>
       <span class="logo-letter" style='color: rgb(244,174,1)'>a</span>
       <span class="logo-letter" style='color: green'>y</span>
-    </div>
-    <div id="nav-menu">
-      <div id="nav-home" class="nav-item"><%= link_to "Home", auctions_path %></div>
-      <!-- <div class="nav-item">My account</div> -->
-      <% if current_user %>
-        <div id="nav-home" class="nav-item"><%= link_to "My account", user_path(User.find(session[:user_id])) %></div>  
-      <% else %>
-        <div id="nav-login" class="nav-item"><%= link_to "Log in", "/login" %></div>
-        <div id="nav-signup" class="nav-item"><%= link_to "Sign Up", "/signup" %></div>
-      <% end %>
-
     </div>
     <%= yield %>
   </body>
