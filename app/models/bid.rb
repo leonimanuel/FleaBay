@@ -24,7 +24,7 @@ class Bid < ApplicationRecord
 				end
 			elsif amount < self.auction.bids.highest_bid.all.first.amount
 				binding.pry
-				errors.add(:amount, "Your bid must be higher than the current heighest bid! SELF: #{self.auction.bids.highest_bid.all.first.amount}")
+				errors.add(:amount, "Your bid must be higher than the current heighest bid!")
 			end
 		end
 	end

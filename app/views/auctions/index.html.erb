@@ -1,5 +1,5 @@
 <% if params[:user_id] %>
-	<h1>Your Auctions</h1>
+	<h1>My Auctions</h1>
 	<h3><%= link_to "Auction New Item", new_user_auction_path(@user) %></h3>
 	<ol>
 		<% @auctions.each do |auction| %>
@@ -7,7 +7,7 @@
 		<% end %>
 	</ol>
 <% else %>
-	<h1>All Auctions</h1>
+	<h1>Auctions</h1>
 
 	<form action="/auctions" method="GET">
 		<select name="condition" id="item_condition">
@@ -19,7 +19,7 @@
 		</select>
 		<input type="submit" value="search by Condition">
 	</form>
-
+	<br>
 	<% @categories.each do |c| %>
 		<%= form_with model: c, url: auctions_path, method: "GET", local: true, class: "category" do |f| %>	
 			<%= f.hidden_field :category_id, value: "#{c.id}" %>
