@@ -1,5 +1,5 @@
 class Auctions::CategoriesController < ApplicationController
 	def show
-		binding.pry
+		# binding.pry
 	end
 end

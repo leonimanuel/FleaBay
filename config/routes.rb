@@ -11,8 +11,14 @@ Rails.application.routes.draw do
   resources :auctions, only: [:index, :show] do
     # get "/:condition" => "auctions#index"
     # get "/:category" => "auctions#index"  
-    resources :categories, only: [:index, :show]  
   end
+
+  namespace :auctions do
+    resources :categories, only: [:show]    
+  end
+
+
+
   get "/auctions/:condition" => "auctions#index"
 
   resources :users do

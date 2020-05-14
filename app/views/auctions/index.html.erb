@@ -20,11 +20,18 @@
 		<input type="submit" value="search by Condition">
 	</form>
 	<br>
+
+	<!-- FORMS -->
 	<% @categories.each do |c| %>
 		<%= form_with model: c, url: auctions_path, method: "GET", local: true, class: "category" do |f| %>	
 			<%= f.hidden_field :category_id, value: "#{c.id}" %>
 			<%= f.submit c.name %>
 		<% end %>
+	<% end %>
+
+	<!-- LINKS -->
+	<% @categories.each do |c| %>
+		<%= link_to c.name, auctions_category_path(c.name) %>
 	<% end %>
 
 	<ol>
